@@ -93,12 +93,14 @@ class DefaultController implements ContainerAwareInterface
      */
     protected function getForm()
     {
-        $subjects = $this->container->getParameter('frequence_web_contact.fixed_to_and_subject');
+        $options = array("fixed_to_and_subject" => array());
 
-        if(count($subjects) > 0) {
-            $options =  array("fixed_to_and_subject" => $this->container->getParameter('frequence_web_contact.fixed_to_and_subject'));
-        } else {
-            $options = array("fixed_to_and_subject" => array());
+        if ($this->container->hasParameter('frequence_web_contact.fixed_to_and_subject')) {
+            $subjects = $this->container->getParameter('frequence_web_contact.fixed_to_and_subject');
+
+            if (count($subjects) > 0) {
+                $options = array("fixed_to_and_subject" => $this->container->getParameter('frequence_web_contact.fixed_to_and_subject'));
+            }
         }
 
         return $this->container->get('form.factory')->create(
