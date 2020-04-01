@@ -81,7 +81,7 @@ class DefaultController implements ContainerAwareInterface
     protected function renderFormResponse(FormInterface $form)
     {
         return $this->container->get('templating')->renderResponse(
-            'FrequenceWebContactBundle:Default:index.html.twig',
+            '@FrequenceWebContact/Default/index.html.twig',
             ['form' => $form->createView()]
         );
     }
